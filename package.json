@@ -1,6 +1,6 @@
 {
   "name": "snap-to-pdf",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A lightweight HTML → PDF rendering library for Node + TypeScript",
   "type": "module",
   "main": "./dist/index.cjs",
