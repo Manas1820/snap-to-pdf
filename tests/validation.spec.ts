@@ -47,4 +47,9 @@ describe('validateOptions', () => {
     expect(consoleSpy).not.toHaveBeenCalled();
     consoleSpy.mockRestore();
   });
+
+  it('should throw error if both url and html are provided', () => {
+    const options: SnapOptions = { url: 'https://example.com', html: '<div></div>' };
+    expect(() => validateOptions(options)).toThrow('Invalid Configuration: Both "url" and "html" options were provided');
+  });
 });

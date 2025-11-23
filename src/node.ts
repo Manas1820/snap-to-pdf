@@ -23,8 +23,18 @@ export type { SnapOptions };
  * @param options - Configuration options for the PDF generation.
  * @returns A Promise resolving to the PDF as a Buffer.
  */
-export const snapToPdf = async (input: string, options: SnapOptions = {}): Promise<Buffer> => {
-  return renderPdf(input, options);
+export const snapToPdf = async (inputOrOptions: string | SnapOptions, options?: SnapOptions): Promise<Buffer> => {
+  let finalOptions: SnapOptions = {};
+  let input: string | undefined;
+
+  if (typeof inputOrOptions === 'string') {
+    input = inputOrOptions;
+    finalOptions = options || {};
+  } else {
+    finalOptions = inputOrOptions || {};
+  }
+
+  return renderPdf(input, finalOptions);
 };
 
 export { renderPdf };

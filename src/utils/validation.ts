@@ -8,6 +8,10 @@ import { SnapOptions } from '../types';
  * @param options - The options to validate.
  */
 export const validateOptions = (options: SnapOptions): void => {
+  if (options.url && options.html) {
+    throw new Error('Invalid Configuration: Both "url" and "html" options were provided. Please specify only one source.');
+  }
+
   if (options.headerTemplate && !options.margin) {
     console.warn('Warning: headerTemplate is provided but no margins are set. The header might be hidden.');
   }

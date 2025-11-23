@@ -290,23 +290,54 @@ export function DownloadButton({ html }: { html: string }) {
 }
 ```
 
+## Rendering from a URL
+
+You can render a PDF directly from a live URL with full fidelity—including external fonts, stylesheets, and images.
+
+```typescript
+// Render a URL
+const pdf = await snapToPdf({ url: 'https://example.com' });
+
+// Render a URL with a theme injected
+const pdf = await snapToPdf({ 
+  url: 'https://example.com', 
+  theme: 'clean',
+  injectDefaultStyles: true 
+});
+```
+
+**Note:** When using `injectDefaultStyles: true` with a URL, the theme styles are injected *after* the page loads, allowing you to apply consistent branding to external content.
+
 ## CLI Usage
 
-For quick conversions from the command line:
+Run `snap-to-pdf` directly from your terminal.
 
 ```bash
-npx snap-to-pdf input.html -o output.pdf
+# Render a URL
+npx snap-to-pdf --url https://example.com -o output.pdf
 
-npx snap-to-pdf report.html --theme corporate --landscape
+# Render a local HTML file
+npx snap-to-pdf ./page.html -o result.pdf
 
-npx snap-to-pdf input.html --debug
+# Render with a theme and landscape orientation
+npx snap-to-pdf --url https://example.com --theme corporate --landscape
+
+# Render with custom margins
+npx snap-to-pdf --url https://example.com --margins "20mm"
 ```
 
 **Options:**
+- `--url <url>`: URL to render (mutually exclusive with `--html` or input argument)
+- `--html <html>`: HTML content to render (mutually exclusive with `--url`)
 - `-o, --output <path>`: Output PDF file path (default: `output.pdf`)
 - `--format <format>`: PDF Format (A4, Letter, etc.) (default: `A4`)
 - `--landscape`: Landscape orientation
 - `--theme <theme>`: Apply a theme (`clean`, `corporate`, `minimal`)
+- `--inject-default-styles`: Inject default styles for the theme (default: `true`)
+- `--no-inject-default-styles`: Do not inject default styles
+- `--header-template <template>`: HTML template for the print header
+- `--footer-template <template>`: HTML template for the print footer
+- `--margins <margins>`: Margins (e.g., "10mm" or JSON string)
 - `--debug`: Enable debug mode to visualize layout boundaries
 
 ## Running Examples
@@ -343,7 +374,10 @@ Converts HTML to a PDF Buffer.
 
 | Option | Type | Description |
 |--------|------|-------------|
+| `url` | `string` | URL to render (mutually exclusive with `html`). |
+| `html` | `string` | HTML content to render (mutually exclusive with `url`). |
 | `theme` | `'standard' \| 'clean' \| 'corporate' \| 'minimal' \| 'none'` | Prebuilt theme (default: `'standard'`). |
+| `injectDefaultStyles` | `boolean` | Inject theme styles (default: `true`). |
 | `format` | `string` | PDF Format (e.g., 'A4', 'Letter'). |
 | `landscape` | `boolean` | Enable landscape orientation. |
 | `watermark` | `object` | Configuration for text watermarks. |
