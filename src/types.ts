@@ -98,9 +98,27 @@ export interface SnapOptions extends Omit<PDFOptions, 'path'> {
   theme?: 'standard' | 'clean' | 'corporate' | 'minimal' | 'none';
 
   /**
+   * Whether to inject default styles for the selected theme.
+   * @default true
+   */
+  injectDefaultStyles?: boolean;
+
+  /**
    * Enable "Explain PDF Issues" mode.
    * Analyzes the page for common layout problems and logs them to the console.
    * @default false
    */
   explain?: boolean;
+
+  /**
+   * The URL to render.
+   * Mutually exclusive with `html`.
+   */
+  url?: string;
+
+  /**
+   * The HTML content to render.
+   * Mutually exclusive with `url`.
+   */
+  html?: string;
 }
