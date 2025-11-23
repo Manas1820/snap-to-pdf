@@ -1,6 +1,6 @@
 {
   "name": "snap-to-pdf",
-  "version": "0.0.0-development",
+  "version": "0.1.0",
   "description": "A lightweight HTML → PDF rendering library for Node + TypeScript",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -9,9 +9,32 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+      "browser": "./dist/browser.js",
+      "edge-light": "./dist/browser.js",
+      "worker": "./dist/browser.js",
+      "node": {
+        "import": "./dist/node.js",
+        "require": "./dist/node.cjs"
+      },
+      "default": {
+        "import": "./dist/node.js",
+        "require": "./dist/node.cjs"
+      }
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js",
+      "require": "./dist/node.cjs"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js",
+      "require": "./dist/browser.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "snap-to-pdf": "./dist/cli.js"
   },
   "files": [
     "dist",
@@ -22,6 +45,9 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "dev:test": "tsx scripts/dev-test.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
     "prepare": "husky install",
@@ -60,5 +86,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "puppeteer": "^24.31.0"
   }
 }
