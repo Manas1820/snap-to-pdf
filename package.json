@@ -64,7 +64,7 @@
     "typescript",
     "node"
   ],
-  "author": "coolstorm",
+  "author": "Manas Gupta",
   "license": "MIT",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
