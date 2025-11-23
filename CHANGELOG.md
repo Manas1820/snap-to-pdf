@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Manas1820/snap-to-pdf/compare/v1.0.0...v1.0.1) (2025-11-23)
+
+
+### Bug Fixes
+
+* add build step to release workflow ([db42171](https://github.com/Manas1820/snap-to-pdf/commit/db42171b9323f608ae95c8894ac4f9837867d19e))
+
 # 1.0.0 (2025-11-23)
 
 
